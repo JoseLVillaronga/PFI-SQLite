@@ -1,37 +1,52 @@
 import config
 config.os.system('clear')
 
-collection = config.db['productos']
+print("Restar cantidad en producto\n\n")
 
-print("Sumar cantidad en producto\n\n")
-
-codigo = str(input("Ingrese código del producto a modificar: "))
-
-filtro = {"codigo": codigo}
-
+codigo1 = str(input("Ingrese código del producto a modificar: "))
 cantidad = int(input("Cantidad a restar: "))
-producto = collection.find_one({"codigo": codigo})
 
 i = 0
 
 while cantidad < 1:
     if (i > 2):
-        print("Supero la cantidad de intentos ...")
+        print("Supero a cantidad de intentos ...")
         config.time.sleep(2)
         exit()
     else:
-        print("La cantidad a sumar debe ser mayor a '0'")
+        print("La cantidad a restar debe ser mayor a '0'")
         config.time.sleep(2)
         i += 1
 
-ref = producto["cantidad"] - cantidad 
+config.cursor.execute('SELECT * FROM productos WHERE codigo = ?', (codigo1,))
+res = config.cursor.fetchone()
 
-if ((producto is not None) and ref >= 0):
-    cantidad_anterior=producto["cantidad"]
-    cantidad = cantidad_anterior - cantidad
-    nueva_cantidad = {"$set": {"cantidad": cantidad}} 
-    res = collection.update_one(filtro, nueva_cantidad)
-    if (res.modified_count > 0):
+print(res)
+id,nombre,precio,iva,ganancia,cantidad_anterior,codigo,reposicion = res
+
+if (len(nombre) > 0):
+    nueva_cantidad = cantidad_anterior - cantidad
+    if (nueva_cantidad > 0):
+        try:
+            # Actualizar la cantidad para el código especificado
+            config.cursor.execute('''
+            UPDATE productos
+            SET cantidad = ?
+            WHERE codigo = ?
+            ''', (nueva_cantidad, codigo))
+            
+            # Confirmar cambios
+            config.conn.commit()
+
+            if config.cursor.rowcount > 0:
+                print(f"Cantidad actualizada a {nueva_cantidad} para el código '{codigo}'.")
+            else:
+                print(f"No se encontró un producto con el código '{codigo}'.")
+        except config.sqlite3.Error as e:
+            print(f"Error al actualizar: {e}")
+        finally:
+            # Cerrar la conexión
+            config.conn.close()
         print("Producto actualizado con exito ...")
         config.time.sleep(2)
         exit()
@@ -40,6 +55,6 @@ if ((producto is not None) and ref >= 0):
         config.time.sleep(2)
         exit()
 else:
-    print("El producto no existe o el resultado es menor a '0'")
+    print("El producto no existe")
     config.time.sleep(2)
     exit()

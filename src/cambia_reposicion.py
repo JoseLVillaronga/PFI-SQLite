@@ -1,21 +1,20 @@
 import config
 config.os.system('clear')
 
-print("Sumar cantidad en producto\n\n")
+print("Restar cantidad en producto\n\n")
 
 codigo1 = str(input("Ingrese código del producto a modificar: "))
-
-cantidad = int(input("Cantidad a sumar: "))
+reposicion1 = int(input("Cantidad de reposición: "))
 
 i = 0
 
-while cantidad < 1:
+while reposicion1 < 1:
     if (i > 2):
         print("Supero a cantidad de intentos ...")
         config.time.sleep(2)
         exit()
     else:
-        print("La cantidad la sumar debe ser mayor a '0'")
+        print("La cantidad a restar debe ser mayor a '0'")
         config.time.sleep(2)
         i += 1
 
@@ -24,25 +23,22 @@ res = config.cursor.fetchone()
 
 print(res)
 id,nombre,precio,iva,ganancia,cantidad_anterior,codigo,reposicion = res
-print(id,nombre,precio,iva,ganancia,cantidad,codigo,reposicion)
-config.time.sleep(8)
 
 if (len(nombre) > 0):
-    nueva_cantidad = cantidad + cantidad_anterior
-    if (nueva_cantidad > 0):
+    if (reposicion1 > 0):
         try:
             # Actualizar la cantidad para el código especificado
             config.cursor.execute('''
             UPDATE productos
-            SET cantidad = ?
+            SET reposicion = ?
             WHERE codigo = ?
-            ''', (nueva_cantidad, codigo))
+            ''', (reposicion1, codigo))
             
             # Confirmar cambios
             config.conn.commit()
 
             if config.cursor.rowcount > 0:
-                print(f"Cantidad actualizada a {nueva_cantidad} para el código '{codigo}'.")
+                print(f"Cantidad de reposición actualizada a {reposicion1} para el código '{codigo}'.")
             else:
                 print(f"No se encontró un producto con el código '{codigo}'.")
         except config.sqlite3.Error as e:
@@ -61,4 +57,3 @@ else:
     print("El producto no existe")
     config.time.sleep(2)
     exit()
-
