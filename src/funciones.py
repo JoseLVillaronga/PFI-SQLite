@@ -10,6 +10,7 @@ def mostrar_menu():
         "3.- Suma producto",
         "4.- Resta producto",
         "5.- Baja producto",
+        "7.- Test",
         "6.- Salir de la aplicación\n\n"
     ]
    # Imprime lista de opciones 
@@ -36,6 +37,10 @@ def ejecutar_opcion(opcion):
     elif (opcion == '5'):
         # Baja de producto 
         os.system('python3 src/consulta_baja.py')
+        os.system('clear')
+    elif (opcion == '7'):
+        # Baja de producto 
+        os.system('python3 src/test.py')
         os.system('clear')
     elif (opcion == '6'):
         # Sale del sistema 
