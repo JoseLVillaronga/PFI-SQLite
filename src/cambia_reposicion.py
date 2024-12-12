@@ -1,5 +1,7 @@
 import config
-config.os.system('clear')
+import funciones
+#config.os.system('clear')
+funciones.clear_console()
 
 print("Restar cantidad en producto\n\n")
 

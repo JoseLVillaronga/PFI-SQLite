@@ -1,5 +1,7 @@
 import config
-config.os.system('clear')
+import funciones
+funciones.clear_console()
+#config.os.system('clear')
 
 # Crear la tabla de productos si no existe
 config.cursor.execute('''

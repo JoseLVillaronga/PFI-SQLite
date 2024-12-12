@@ -1,5 +1,7 @@
 import config
-config.os.system('clear')
+import funciones
+funciones.clear_console()
+#config.os.system('clear')
 
 print("Baja de producto\n\n")
 

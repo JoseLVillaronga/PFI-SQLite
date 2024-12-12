@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 from src import config
 from src import funciones
-config.os.system('clear')
+funciones.clear_console()
+#config.os.system('clear')
 
 # Ingreso de usaurio del sistema
 user=str(input("Ingresar usuario: "))

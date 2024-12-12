@@ -1,5 +1,7 @@
 import config
-config.os.system('clear')
+import funciones
+funciones.clear_console()
+#config.os.system('clear')
 # Esto es un comentario... 
 print("Hola Mundo!")
 print("Hola Python!")

@@ -1,5 +1,7 @@
 import config
-config.os.system('clear')
+import funciones
+funciones.clear_console()
+#config.os.system('clear')
 kelvin_celsius = 273 # Valor utilizado para convertir de Kelvin a Celsius
 #puedo definir alguna variable que me ayude a la conversion???
 

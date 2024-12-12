@@ -1,5 +1,7 @@
 import config
-config.os.system('clear')
+import funciones
+funciones.clear_console()
+#config.os.system('clear')
 busca = input("Articulo a buscar: ")
 config.cursor.execute('''
     SELECT * FROM productos
