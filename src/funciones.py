@@ -29,42 +29,34 @@ def ejecutar_opcion(opcion):
     if (opcion == '1'):
         # Muestra listado de articulos 
         os.system('python3 src/consulta_test.py')
-        #os.system('clear')
         clear_console()
     elif (opcion == '2'):
         # Alta de producto 
         os.system('python3 src/consulta_add.py')
-        #os.system('clear')
         clear_console()
     elif (opcion == '3'):
         # Agrega stock 
         os.system('python3 src/consulta_sum.py')
-        #os.system('clear')
         clear_console()
     elif (opcion == '4'):
         # Retira stock 
         os.system('python3 src/consulta_res.py')
-        #os.system('clear')
         clear_console()
     elif (opcion == '5'):
         # Baja de producto 
         os.system('python3 src/consulta_baja.py')
-        #os.system('clear')
         clear_console()
     elif (opcion == '7'):
         # Baja de producto 
         os.system('python3 src/consulta_busca.py')
-        #os.system('clear')
         clear_console()
     elif (opcion == '8'):
-        # Baja de producto 
+        # Reporte de stock bajo
         os.system('python3 src/consulta_b_s.py')
-        #os.system('clear')
         clear_console()
     elif (opcion == '9'):
-        # Baja de producto 
+        # Cambia cantidad de reposición
         os.system('python3 src/cambia_reposicion.py')
-        #os.system('clear')
         clear_console()
     elif (opcion == '6'):
         # Sale del sistema 
@@ -74,6 +66,5 @@ def ejecutar_opcion(opcion):
         # Opción no valida 
         print("\n\nOpción no válida. Intente de nuevo.")
         time.sleep(2)
-        #os.system('clear')
         clear_console()
 
